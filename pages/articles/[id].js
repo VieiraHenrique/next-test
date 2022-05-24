@@ -14,13 +14,11 @@ export default function SingleArticle({ article }) {
 export async function getStaticProps(context) {
     const { data } = await axios.get(`${API_URL}/articles/${context.params.id}`);
 
-    console.log(data.data);
-
     return {
         props: {
             article: data.data,
         },
-        revalidate: 1
+        revalidate: 1,
     };
 }
 
@@ -33,10 +31,8 @@ export async function getStaticPaths() {
         };
     });
 
-    console.log(paths);
-
     return {
         paths,
-        fallback: "blocking", // goes to 404 if not valid
+        fallback: "blocking",
     };
 }
