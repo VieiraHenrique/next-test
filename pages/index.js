@@ -4,7 +4,6 @@ import ReactMarkdown from "react-markdown";
 import { API_URL } from "../lib/variables";
 
 export default function Home({ articles }) {
-    console.log(articles);
     return (
         <>
             {articles &&
@@ -24,12 +23,10 @@ export default function Home({ articles }) {
 
 export async function getStaticProps(context) {
     const { data } = await axios.get(`${API_URL}/articles`);
-    console.log(data);
 
     return {
         props: {
             articles: data.data,
         },
-        revalidate: 1,
     };
 }

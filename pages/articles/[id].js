@@ -18,7 +18,6 @@ export async function getStaticProps(context) {
         props: {
             article: data.data,
         },
-        revalidate: 1,
     };
 }
 
