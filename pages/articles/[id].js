@@ -12,13 +12,20 @@ export default function SingleArticle({ article }) {
 }
 
 export async function getStaticProps(context) {
-    const { data } = await axios.get(`${API_URL}/articles/${context.params.id}`);
-
-    return {
-        props: {
-            article: data.data,
-        },
-    };
+    try {
+        const { data } = await axios.get(`${API_URL}/articles/${context.params.id}`);
+        return {
+            props: {
+                article: data.data,
+            },
+        };
+    } catch (error) {
+        console.log("error", error);
+        return {
+            notFound: true,
+            revalidate: 1,
+        };
+    }
 }
 
 export async function getStaticPaths() {
