@@ -23,7 +23,6 @@ export async function getStaticProps(context) {
         console.log("error", error);
         return {
             notFound: true,
-            revalidate: 1,
         };
     }
 }
